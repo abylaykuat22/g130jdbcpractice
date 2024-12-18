@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html">
+<div layout:fragment="content">ъ
+    <form action="/items/add" method="post">
+        <input type="text"
+               class="form-control"
+               name="name"
+               placeholder="Insert name..."><br><br>
+        <select class="form-control" name="brand.id">
+            <option th:each="brand : ${brandy}" th:value="${brand.id}" th:text="${brand.name}"></option>
+        </select>
+        <input type="number"
+               name="price"
+               class="form-control"
+               placeholder="Insert price..."><br><br>
+        <button class="btn btn-success">ADD ITEM</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Наименование</th>
+            <th>Бренд</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${tovary}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.brand.name}"></td>
+            <td><a href="#" class="btn btn-primary">DETAILS</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

@@ -26,6 +26,15 @@ public class BrandTableBean {
                         "    ID BIGSERIAL PRIMARY KEY ,\n" +
                         "    NAME VARCHAR NOT NULL ,\n" +
                         "    CODE VARCHAR(3) NOT NULL UNIQUE\n" +
+                        ");" +
+                        "CREATE TABLE IF NOT EXISTS items\n" +
+                        "(\n" +
+                        "    ID BIGSERIAL PRIMARY KEY ,\n" +
+                        "    NAME VARCHAR(200) NOT NULL ,\n" +
+                        "    PRICE DOUBLE PRECISION,\n" +
+                        "    BRAND_ID BIGINT NOT NULL,\n" +
+                        "    FOREIGN KEY (BRAND_ID)\n" +
+                        "        REFERENCES brands(ID)\n" +
                         ")"
         );
         statement.execute();
@@ -45,7 +54,7 @@ public class BrandTableBean {
     @PreDestroy
     public void destroy() throws SQLException {
         PreparedStatement statement = connection.prepareStatement(
-                "TRUNCATE TABLE brands"
+                "DELETE FROM items; DELETE FROM brands;"
         );
         statement.executeUpdate();
         statement.close();

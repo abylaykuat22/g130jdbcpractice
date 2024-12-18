@@ -96,4 +96,19 @@ public class BrandService {
             if (statement != null) statement.close();
         }
     }
+
+    public void deleteBrandById(Long id) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "DELETE FROM brands WHERE id = ?"
+            );
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) statement.close();
+        }
+    }
 }
