@@ -2,37 +2,68 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout/main.html">
-<div layout:fragment="content">ъ
-    <form action="/items/add" method="post">
-        <input type="text"
-               class="form-control"
-               name="name"
-               placeholder="Insert name..."><br><br>
-        <select class="form-control" name="brand.id">
-            <option th:each="brand : ${brandy}" th:value="${brand.id}" th:text="${brand.name}"></option>
-        </select>
-        <input type="number"
-               name="price"
-               class="form-control"
-               placeholder="Insert price..."><br><br>
-        <button class="btn btn-success">ADD ITEM</button>
-    </form>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Наименование</th>
-            <th>Бренд</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="item : ${tovary}">
-            <td th:text="${item.id}"></td>
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.brand.name}"></td>
-            <td><a href="#" class="btn btn-primary">DETAILS</a></td>
-        </tr>
-        </tbody>
-    </table>
+<div layout:fragment="content">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mymodel">
+    + ADD NEW APPLICATION REQUEST
+  </button>
+
+  <!-- Modal -->
+  <form action="/application-requests/add" method="post">
+    <div class="modal fade" id="mymodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">New Task</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="text"
+                   name="userName"
+                   class="form-control"
+                   placeholder="Insert username..."><br><br>
+            <input type="text"
+                   name="courseName"
+                   class="form-control"
+                   placeholder="Insert course name..."><br><br>
+            <input type="text"
+                   name="phone"
+                   class="form-control"
+                   placeholder="Insert phone..."><br><br>
+            <textarea name="commentary" cols="30" rows="10"
+                      placeholder="Insert commentary..."
+                      class="form-control">
+                        </textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>USER NAME</th>
+      <th>COURSE NAME</th>
+      <th>COMMENTARY</th>
+      <th>PHONE</th>
+      <th>DETAILS</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="applicationRequest : ${zayavki}">
+      <td th:text="${applicationRequest.id}"></td>
+      <td th:text="${applicationRequest.userName}"></td>
+      <td th:text="${applicationRequest.courseName}"></td>
+      <td th:text="${applicationRequest.commentary}"></td>
+      <td th:text="${applicationRequest.phone}"></td>
+      <td><a th:href="${'/application-requests/' + applicationRequest.id}" class="btn btn-primary">DETAILS</a></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 </html>

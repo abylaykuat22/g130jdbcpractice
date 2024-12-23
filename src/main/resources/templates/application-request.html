@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html">
+<div layout:fragment="content">
+  <form action="/application-requests/add" method="post">
+    <input type="hidden" th:value="${zayavka.id}" name="id">
+    <input type="text"
+           th:value="${zayavka.userName}"
+           name="userName"
+           class="form-control"
+           placeholder="Insert username..."><br><br>
+    <input type="text"
+           th:value="${zayavka.courseName}"
+           name="courseName"
+           class="form-control"
+           placeholder="Insert course name..."><br><br>
+    <input type="text"
+           th:value="${zayavka.phone}"
+           name="phone"
+           class="form-control"
+           placeholder="Insert phone..."><br><br>
+    <textarea name="commentary" cols="30" rows="10"
+              th:value="${zayavka.commentary}"
+              placeholder="Insert commentary..."
+              class="form-control">
+                        </textarea>
+  </form>
+</div>
+</html>
