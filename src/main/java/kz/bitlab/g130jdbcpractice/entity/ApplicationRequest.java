@@ -14,5 +14,5 @@ public class ApplicationRequest {
     private String courseName;
     private String commentary;
     private String phone;
-    private boolean handled; //обработано или нет
+    private boolean handled;
 }
